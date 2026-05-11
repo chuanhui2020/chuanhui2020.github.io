@@ -26,7 +26,9 @@
       "Bash(git ls-remote *)",
       "Bash(git fetch *)",
       "Bash(where python *)",
-      "Bash(C:/Users/Administrator/AppData/Local/Programs/Python/Python314/python.exe *)"
+      "Bash(C:/Users/Administrator/AppData/Local/Programs/Python/Python314/python.exe *)",
+      "Bash(curl -sI https://chuanhui2020.github.io/assets/index-RRO4hZ0R.js)",
+      "Bash(curl -sI https://chuanhui2020.github.io/assets/index-lY0bk7Mf.css)"
     ]
   }
 }
