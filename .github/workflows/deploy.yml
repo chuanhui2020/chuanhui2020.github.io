@@ -33,6 +33,9 @@ jobs:
       - name: 构建项目
         run: npm run build
 
+      - name: 配置 Pages
+        uses: actions/configure-pages@v5
+
       - name: 上传构建产物
         uses: actions/upload-pages-artifact@v3
         with:
