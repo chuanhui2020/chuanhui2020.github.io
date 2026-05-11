@@ -1,7 +1,11 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const mobileMenuOpen = ref(false)
+const activeSection = ref('hero')
+const scrollProgress = ref(0)
+
+const sections = ['hero', 'experience', 'projects', 'skills', 'contact']
 
 const scrollToSection = (id) => {
   const element = document.getElementById(id)
@@ -10,10 +14,36 @@ const scrollToSection = (id) => {
   }
   mobileMenuOpen.value = false
 }
+
+const onScroll = () => {
+  const scrollTop = window.scrollY
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight
+  scrollProgress.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
+
+  for (let i = sections.length - 1; i >= 0; i--) {
+    const el = document.getElementById(sections[i])
+    if (el && el.offsetTop - 100 <= scrollTop) {
+      activeSection.value = sections[i]
+      break
+    }
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+})
 </script>
 
 <template>
   <nav class="fixed top-0 w-full bg-tech-bg/80 backdrop-blur-md z-50 border-b border-tech-border">
+    <!-- Scroll progress bar -->
+    <div class="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-tech-accent/70 to-tech-accent transition-all duration-150" :style="{ width: scrollProgress + '%' }"></div>
+
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <div class="flex-shrink-0 font-heading font-bold text-lg text-tech-accent glow-green-text">
@@ -21,21 +51,19 @@ const scrollToSection = (id) => {
         </div>
 
         <!-- Desktop nav -->
-        <div class="hidden md:flex space-x-8">
-          <button @click="scrollToSection('hero')" class="text-tech-muted-fg hover:text-tech-accent transition-colors">
-            首页
-          </button>
-          <button @click="scrollToSection('experience')" class="text-tech-muted-fg hover:text-tech-accent transition-colors">
-            经历
-          </button>
-          <button @click="scrollToSection('projects')" class="text-tech-muted-fg hover:text-tech-accent transition-colors">
-            项目
-          </button>
-          <button @click="scrollToSection('skills')" class="text-tech-muted-fg hover:text-tech-accent transition-colors">
-            技能
-          </button>
-          <button @click="scrollToSection('contact')" class="text-tech-muted-fg hover:text-tech-accent transition-colors">
-            联系
+        <div class="hidden md:flex space-x-1">
+          <button
+            v-for="section in sections"
+            :key="section"
+            @click="scrollToSection(section)"
+            class="relative px-4 py-2 rounded-lg transition-all duration-200"
+            :class="activeSection === section ? 'text-tech-accent' : 'text-tech-muted-fg hover:text-tech-fg'"
+          >
+            {{ { hero: '首页', experience: '经历', projects: '项目', skills: '技能', contact: '联系' }[section] }}
+            <span
+              v-if="activeSection === section"
+              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-0.5 bg-tech-accent rounded-full shadow-[0_0_8px_rgba(34,197,94,0.6)]"
+            ></span>
           </button>
         </div>
 
@@ -71,34 +99,14 @@ const scrollToSection = (id) => {
       >
         <div class="px-4 py-3 space-y-1">
           <button
-            @click="scrollToSection('hero')"
-            class="block w-full text-left px-4 py-3 rounded-lg text-tech-muted-fg hover:bg-tech-muted hover:text-tech-accent transition-colors"
+            v-for="section in sections"
+            :key="section"
+            @click="scrollToSection(section)"
+            class="block w-full text-left px-4 py-3 rounded-lg transition-colors"
+            :class="activeSection === section ? 'text-tech-accent bg-tech-muted' : 'text-tech-muted-fg hover:bg-tech-muted hover:text-tech-accent'"
           >
-            首页
-          </button>
-          <button
-            @click="scrollToSection('experience')"
-            class="block w-full text-left px-4 py-3 rounded-lg text-tech-muted-fg hover:bg-tech-muted hover:text-tech-accent transition-colors"
-          >
-            经历
-          </button>
-          <button
-            @click="scrollToSection('projects')"
-            class="block w-full text-left px-4 py-3 rounded-lg text-tech-muted-fg hover:bg-tech-muted hover:text-tech-accent transition-colors"
-          >
-            项目
-          </button>
-          <button
-            @click="scrollToSection('skills')"
-            class="block w-full text-left px-4 py-3 rounded-lg text-tech-muted-fg hover:bg-tech-muted hover:text-tech-accent transition-colors"
-          >
-            技能
-          </button>
-          <button
-            @click="scrollToSection('contact')"
-            class="block w-full text-left px-4 py-3 rounded-lg text-tech-muted-fg hover:bg-tech-muted hover:text-tech-accent transition-colors"
-          >
-            联系
+            <span v-if="activeSection === section" class="mr-2">▹</span>
+            {{ { hero: '首页', experience: '经历', projects: '项目', skills: '技能', contact: '联系' }[section] }}
           </button>
         </div>
       </div>
