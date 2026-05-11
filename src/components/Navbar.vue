@@ -20,6 +20,11 @@ const onScroll = () => {
   const docHeight = document.documentElement.scrollHeight - window.innerHeight
   scrollProgress.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
 
+  if (scrollTop + 5 >= docHeight) {
+    activeSection.value = sections[sections.length - 1]
+    return
+  }
+
   for (let i = sections.length - 1; i >= 0; i--) {
     const el = document.getElementById(sections[i])
     if (el && el.offsetTop - 100 <= scrollTop) {
