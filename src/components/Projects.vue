@@ -25,23 +25,28 @@ const projects = [
 </script>
 
 <template>
-  <section id="projects" class="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+  <section id="projects" class="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-tech-muted/30">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8 sm:mb-12 text-center">
-        项目展示
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-tech-fg mb-8 sm:mb-12 text-center">
+        <span class="text-tech-accent">&gt;</span> 项目展示
       </h2>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         <div
           v-for="(project, index) in projects"
           :key="index"
-          class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-shadow p-5 sm:p-6 border border-gray-200 dark:border-gray-700"
+          class="glass-card rounded-xl p-5 sm:p-6 hover:glow-green transition-all duration-300 group"
         >
-          <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-            {{ project.title }}
-          </h3>
+          <div class="flex items-center mb-3">
+            <svg class="w-5 h-5 text-tech-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+            </svg>
+            <h3 class="text-lg sm:text-xl font-bold text-tech-fg group-hover:text-tech-accent transition-colors">
+              {{ project.title }}
+            </h3>
+          </div>
 
-          <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+          <p class="text-tech-muted-fg mb-4 leading-relaxed text-sm sm:text-base">
             {{ project.description }}
           </p>
 
@@ -49,7 +54,7 @@ const projects = [
             <span
               v-for="(tech, i) in project.tech"
               :key="i"
-              class="px-2.5 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded-full text-xs sm:text-sm font-medium"
+              class="px-2.5 py-1 bg-tech-accent/10 text-tech-accent rounded text-xs font-mono border border-tech-accent/20"
             >
               {{ tech }}
             </span>
@@ -60,7 +65,7 @@ const projects = [
               v-if="project.link"
               :href="project.link"
               target="_blank"
-              class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline py-1"
+              class="inline-flex items-center text-tech-accent hover:glow-green-text text-sm py-1 transition-all"
             >
               查看项目 →
             </a>
@@ -68,7 +73,7 @@ const projects = [
               v-if="project.github"
               :href="project.github"
               target="_blank"
-              class="inline-flex items-center text-gray-700 dark:text-gray-300 hover:underline py-1"
+              class="inline-flex items-center text-tech-muted-fg hover:text-tech-accent text-sm py-1 transition-colors"
             >
               GitHub →
             </a>

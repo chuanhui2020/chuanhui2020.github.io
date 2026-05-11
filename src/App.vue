@@ -7,16 +7,11 @@ import Projects from './components/Projects.vue'
 import Skills from './components/Skills.vue'
 import Contact from './components/Contact.vue'
 
-const darkMode = ref(false)
+const darkMode = ref(true)
 
 onMounted(() => {
-  // 检查本地存储或系统偏好
-  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    darkMode.value = true
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }
+  document.documentElement.classList.add('dark')
+  localStorage.theme = 'dark'
 })
 
 const toggleDarkMode = () => {
@@ -32,7 +27,7 @@ const toggleDarkMode = () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+  <div class="min-h-screen bg-tech-bg text-tech-fg font-mono transition-colors duration-300">
     <Navbar :darkMode="darkMode" @toggle-dark-mode="toggleDarkMode" />
     <main>
       <Hero />
@@ -41,8 +36,8 @@ const toggleDarkMode = () => {
       <Skills />
       <Contact />
     </main>
-    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-6 sm:py-8">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm sm:text-base text-gray-600 dark:text-gray-400">
+    <footer class="border-t border-tech-border py-6 sm:py-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm sm:text-base text-tech-muted-fg">
         <p>&copy; 2026 个人简历. 保留所有权利.</p>
       </div>
     </footer>
