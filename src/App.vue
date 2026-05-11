@@ -41,8 +41,8 @@ const toggleDarkMode = () => {
       <Skills />
       <Contact />
     </main>
-    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-8">
-      <div class="max-w-6xl mx-auto px-4 text-center text-gray-600 dark:text-gray-400">
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-6 sm:py-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm sm:text-base text-gray-600 dark:text-gray-400">
         <p>&copy; 2026 个人简历. 保留所有权利.</p>
       </div>
     </footer>

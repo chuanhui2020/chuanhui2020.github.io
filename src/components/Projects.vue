@@ -25,23 +25,23 @@ const projects = [
 </script>
 
 <template>
-  <section id="projects" class="py-16 px-4 sm:px-6 lg:px-8">
+  <section id="projects" class="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8 sm:mb-12 text-center">
         项目展示
       </h2>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         <div
           v-for="(project, index) in projects"
           :key="index"
-          class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-700"
+          class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-shadow p-5 sm:p-6 border border-gray-200 dark:border-gray-700"
         >
-          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
+          <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
             {{ project.title }}
           </h3>
 
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
+          <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
             {{ project.description }}
           </p>
 
@@ -49,18 +49,18 @@ const projects = [
             <span
               v-for="(tech, i) in project.tech"
               :key="i"
-              class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
+              class="px-2.5 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded-full text-xs sm:text-sm font-medium"
             >
               {{ tech }}
             </span>
           </div>
 
-          <div class="flex space-x-4">
+          <div class="flex flex-wrap gap-4">
             <a
               v-if="project.link"
               :href="project.link"
               target="_blank"
-              class="text-blue-600 dark:text-blue-400 hover:underline"
+              class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline py-1"
             >
               查看项目 →
             </a>
@@ -68,7 +68,7 @@ const projects = [
               v-if="project.github"
               :href="project.github"
               target="_blank"
-              class="text-gray-700 dark:text-gray-300 hover:underline"
+              class="inline-flex items-center text-gray-700 dark:text-gray-300 hover:underline py-1"
             >
               GitHub →
             </a>

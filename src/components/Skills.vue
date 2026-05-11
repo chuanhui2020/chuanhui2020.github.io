@@ -29,34 +29,34 @@ const skillCategories = [
 </script>
 
 <template>
-  <section id="skills" class="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800">
+  <section id="skills" class="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8 sm:mb-12 text-center">
         技能专长
       </h2>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         <div
           v-for="(category, index) in skillCategories"
           :key="index"
           class="space-y-4"
         >
-          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+          <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-4">
             {{ category.category }}
           </h3>
 
           <div
             v-for="(skill, i) in category.skills"
             :key="i"
-            class="space-y-2"
+            class="space-y-1.5"
           >
             <div class="flex justify-between items-center">
-              <span class="text-gray-700 dark:text-gray-300">{{ skill.name }}</span>
-              <span class="text-sm text-gray-500 dark:text-gray-400">{{ skill.level }}%</span>
+              <span class="text-sm sm:text-base text-gray-700 dark:text-gray-300">{{ skill.name }}</span>
+              <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{{ skill.level }}%</span>
             </div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
               <div
-                class="bg-blue-600 dark:bg-blue-400 h-2 rounded-full transition-all duration-500"
+                class="bg-blue-600 dark:bg-blue-400 h-2.5 rounded-full transition-all duration-500"
                 :style="{ width: skill.level + '%' }"
               ></div>
             </div>
