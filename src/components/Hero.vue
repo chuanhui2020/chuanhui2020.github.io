@@ -1,4 +1,6 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+
 const personalInfo = {
   name: '你的名字',
   title: '职位/职业',
@@ -10,6 +12,32 @@ const personalInfo = {
     email: 'your.email@example.com'
   }
 }
+
+const displayedTitle = ref('')
+const showCursor = ref(true)
+const heroVisible = ref(false)
+
+onMounted(() => {
+  heroVisible.value = true
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (prefersReducedMotion) {
+    displayedTitle.value = personalInfo.title
+    showCursor.value = false
+    return
+  }
+
+  let i = 0
+  const typeInterval = setInterval(() => {
+    if (i < personalInfo.title.length) {
+      displayedTitle.value += personalInfo.title[i]
+      i++
+    } else {
+      clearInterval(typeInterval)
+      setTimeout(() => { showCursor.value = false }, 2000)
+    }
+  }, 90)
+})
 </script>
 
 <template>
@@ -20,7 +48,7 @@ const personalInfo = {
     </div>
 
     <div class="max-w-6xl mx-auto w-full relative z-10">
-      <div class="text-center">
+      <div class="text-center" :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'" style="transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);">
         <!-- 头像 -->
         <div v-if="personalInfo.avatar" class="mb-6 sm:mb-8">
           <img
@@ -35,15 +63,38 @@ const personalInfo = {
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-tech-fg mb-3 sm:mb-4">
           {{ personalInfo.name }}
         </h1>
-        <h2 class="text-xl sm:text-2xl lg:text-3xl text-tech-accent mb-4 sm:mb-6 glow-green-text">
-          {{ personalInfo.title }}
+        <h2 class="text-xl sm:text-2xl lg:text-3xl text-tech-accent mb-4 sm:mb-6 glow-green-text h-8 sm:h-10">
+          {{ displayedTitle }}<span v-if="showCursor" class="typewriter-cursor"></span>
         </h2>
         <p class="text-base sm:text-lg text-tech-muted-fg max-w-2xl mx-auto mb-8 leading-relaxed">
           {{ personalInfo.description }}
         </p>
 
+        <!-- 双 CTA -->
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <a
+            href="/resume.pdf"
+            class="inline-flex items-center px-6 py-3.5 bg-tech-accent text-tech-bg rounded-lg hover:glow-green active:scale-95 transition-all font-bold"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            下载简历
+          </a>
+          <a
+            href="#contact"
+            @click.prevent="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })"
+            class="inline-flex items-center px-6 py-3.5 border border-tech-accent text-tech-accent rounded-lg hover:bg-tech-accent/10 active:scale-95 transition-all font-bold"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            联系我
+          </a>
+        </div>
+
         <!-- 社交链接 -->
-        <div class="flex justify-center space-x-4">
+        <div class="flex justify-center space-x-4 mt-8">
           <a
             v-if="personalInfo.social.github"
             :href="personalInfo.social.github"

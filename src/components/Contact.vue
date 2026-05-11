@@ -1,20 +1,46 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+
 const contactInfo = {
   email: 'your.email@example.com',
   location: '城市, 国家',
   available: true
 }
+
+const sectionRef = ref(null)
+const revealed = ref(false)
+
+onMounted(() => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (prefersReducedMotion) { revealed.value = true; return }
+
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      revealed.value = true
+      observer.disconnect()
+    }
+  }, { threshold: 0.1 })
+
+  if (sectionRef.value) observer.observe(sectionRef.value)
+})
 </script>
 
 <template>
-  <section id="contact" class="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-tech-muted/30">
+  <section id="contact" ref="sectionRef" class="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-tech-muted/30">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-tech-fg mb-8 sm:mb-12 text-center">
+      <h2
+        class="text-3xl sm:text-4xl font-heading font-bold text-tech-fg mb-8 sm:mb-12 text-center reveal"
+        :class="{ revealed }"
+      >
         <span class="text-tech-accent">&gt;</span> 联系方式
       </h2>
 
       <div class="max-w-2xl mx-auto">
-        <div class="glass-card rounded-xl p-6 sm:p-8">
+        <div
+          class="glass-card rounded-xl p-6 sm:p-8 reveal"
+          :class="{ revealed }"
+          style="transition-delay: 100ms;"
+        >
           <div class="space-y-5 sm:space-y-6">
             <div class="flex items-center space-x-3 sm:space-x-4">
               <div class="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-lg bg-tech-accent/10 border border-tech-accent/20">

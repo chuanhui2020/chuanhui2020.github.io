@@ -1,4 +1,6 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+
 const experiences = [
   {
     company: '公司名称',
@@ -22,12 +24,32 @@ const experiences = [
     ]
   }
 ]
+
+const sectionRef = ref(null)
+const revealed = ref(false)
+
+onMounted(() => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (prefersReducedMotion) { revealed.value = true; return }
+
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      revealed.value = true
+      observer.disconnect()
+    }
+  }, { threshold: 0.1 })
+
+  if (sectionRef.value) observer.observe(sectionRef.value)
+})
 </script>
 
 <template>
-  <section id="experience" class="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+  <section id="experience" ref="sectionRef" class="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-tech-fg mb-8 sm:mb-12 text-center">
+      <h2
+        class="text-3xl sm:text-4xl font-heading font-bold text-tech-fg mb-8 sm:mb-12 text-center reveal"
+        :class="{ revealed }"
+      >
         <span class="text-tech-accent">&gt;</span> 工作经历
       </h2>
 
@@ -35,7 +57,9 @@ const experiences = [
         <div
           v-for="(exp, index) in experiences"
           :key="index"
-          class="glass-card rounded-xl p-5 sm:p-6 hover:glow-green transition-all duration-300"
+          class="glass-card rounded-xl p-5 sm:p-6 hover:glow-green transition-all duration-300 reveal"
+          :class="{ revealed }"
+          :style="{ transitionDelay: revealed ? (index * 100 + 100) + 'ms' : '0ms' }"
         >
           <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3">
             <div>

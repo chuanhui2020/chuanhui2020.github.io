@@ -54,3 +54,58 @@ html {
     border: 1px solid rgba(71, 85, 105, 0.5);
   }
 }
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skill bar animation */
+.skill-bar {
+  width: 0%;
+  transition: width 0.6s ease-out;
+}
+
+.skill-bar.animate {
+  width: var(--target-width);
+}
+
+/* Typewriter cursor */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: #22C55E;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .skill-bar {
+    width: var(--target-width);
+    transition: none;
+  }
+  .typewriter-cursor {
+    animation: none;
+  }
+}

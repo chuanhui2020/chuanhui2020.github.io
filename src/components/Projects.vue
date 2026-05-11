@@ -1,4 +1,6 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+
 const projects = [
   {
     title: '项目名称 1',
@@ -22,12 +24,32 @@ const projects = [
     github: ''
   }
 ]
+
+const sectionRef = ref(null)
+const revealed = ref(false)
+
+onMounted(() => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (prefersReducedMotion) { revealed.value = true; return }
+
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      revealed.value = true
+      observer.disconnect()
+    }
+  }, { threshold: 0.1 })
+
+  if (sectionRef.value) observer.observe(sectionRef.value)
+})
 </script>
 
 <template>
-  <section id="projects" class="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-tech-muted/30">
+  <section id="projects" ref="sectionRef" class="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-tech-muted/30">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-tech-fg mb-8 sm:mb-12 text-center">
+      <h2
+        class="text-3xl sm:text-4xl font-heading font-bold text-tech-fg mb-8 sm:mb-12 text-center reveal"
+        :class="{ revealed }"
+      >
         <span class="text-tech-accent">&gt;</span> 项目展示
       </h2>
 
@@ -35,7 +57,9 @@ const projects = [
         <div
           v-for="(project, index) in projects"
           :key="index"
-          class="glass-card rounded-xl p-5 sm:p-6 hover:glow-green transition-all duration-300 group"
+          class="glass-card rounded-xl p-5 sm:p-6 hover:glow-green transition-all duration-300 group reveal"
+          :class="{ revealed }"
+          :style="{ transitionDelay: revealed ? (index * 80 + 100) + 'ms' : '0ms' }"
         >
           <div class="flex items-center mb-3">
             <svg class="w-5 h-5 text-tech-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
