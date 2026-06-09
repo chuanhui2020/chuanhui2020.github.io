@@ -3,24 +3,54 @@ import { ref, onMounted } from 'vue'
 
 const experiences = [
   {
-    company: '公司名称',
-    position: '职位名称',
-    duration: '2023.01 - 至今',
-    description: '描述你在这个职位的主要工作内容和成就',
+    company: '北京格瑞拉科技有限公司',
+    position: '服务端开发工程师',
+    duration: '2025.03 - 至今',
+    description: '参与 SLG 手游项目的服务端研发。',
     achievements: [
-      '成就或项目 1',
-      '成就或项目 2',
-      '成就或项目 3'
+      'SLG 手游服务端开发'
     ]
   },
   {
-    company: '上一家公司',
-    position: '职位名称',
-    duration: '2021.06 - 2022.12',
-    description: '描述你在这个职位的主要工作内容和成就',
+    company: '上海梦求网络科技有限公司',
+    position: '服务端开发工程师',
+    duration: '2021.09 - 2024.12',
+    description: '参与《新斗罗大陆》手游（卡牌流水过亿）的开发与维护。',
     achievements: [
-      '成就或项目 1',
-      '成就或项目 2'
+      '对接策划需求，负责游戏模块与玩法开发',
+      '独立完成游戏在海外越南、泰国地区（VNG 发行）的技术接入与上线'
+    ]
+  },
+  {
+    company: '上海睿曦网络科技有限公司',
+    position: '服务端开发工程师',
+    duration: '2020.10 - 2021.08',
+    description: '参与公司手游研发。',
+    achievements: [
+      '对接策划需求，进行游戏功能开发',
+      '对接客户端，设计 Protobuf 接口并提供实现'
+    ]
+  },
+  {
+    company: 'Travelfusion（上海途程旅游咨询有限公司）',
+    position: 'Java 开发工程师',
+    duration: '2019.06 - 2020.10',
+    description: '对接全球航空公司内容，参与跨国团队协作。',
+    achievements: [
+      '实现与全球航司（日本航空、芬兰航空等）的内容对接',
+      '与全球团队沟通协作',
+      '负责 Code Review 与 pre-QA 单元测试',
+      '编写 Release Notes 与系统对接文档'
+    ]
+  },
+  {
+    company: '北京新晨科技股份有限公司',
+    position: 'Java 开发工程师',
+    duration: '2018.06 - 2019.06',
+    description: '银行票据交换系统开发。',
+    achievements: [
+      '协调行内柜面、交换、工作流等关联系统，完成交易准入、银行核心系统对接、人行系统对接、对账等功能，保障交易的安全性与可靠性',
+      '完成分行票据交换系统大部分业务开发，包括三方系统联调与测试支持'
     ]
   }
 ]

@@ -3,28 +3,35 @@ import { ref, onMounted } from 'vue'
 
 const skillCategories = [
   {
-    category: '前端开发',
+    category: '后端语言',
     skills: [
-      { name: 'Vue.js', level: 90 },
-      { name: 'React', level: 85 },
-      { name: 'TypeScript', level: 80 },
-      { name: 'Tailwind CSS', level: 85 }
+      { name: 'Core Java', level: 95 },
+      { name: 'Golang', level: 82 }
     ]
   },
   {
-    category: '后端开发',
+    category: '框架 & 通信',
     skills: [
-      { name: 'Node.js', level: 80 },
-      { name: 'Python', level: 75 },
-      { name: 'SQL', level: 70 }
+      { name: 'Spring 全家桶', level: 90 },
+      { name: 'Netty', level: 88 },
+      { name: 'Thrift / gRPC', level: 80 },
+      { name: 'Proto-Actor', level: 75 }
     ]
   },
   {
-    category: '工具 & 其他',
+    category: '数据库 & 缓存',
     skills: [
-      { name: 'Git', level: 85 },
-      { name: 'Docker', level: 70 },
-      { name: 'CI/CD', level: 65 }
+      { name: 'MySQL', level: 90 },
+      { name: 'Redis', level: 88 },
+      { name: 'MongoDB', level: 75 }
+    ]
+  },
+  {
+    category: '构建 & 工具',
+    skills: [
+      { name: 'Maven / Gradle', level: 88 },
+      { name: 'Git / SVN', level: 90 },
+      { name: 'Go Modules', level: 75 }
     ]
   }
 ]

@@ -3,23 +3,23 @@ import { ref, onMounted } from 'vue'
 
 const projects = [
   {
-    title: '项目名称 1',
-    description: '项目的简短描述，说明项目的目标和你的贡献',
-    tech: ['Vue.js', 'TypeScript', 'Tailwind CSS'],
+    title: '新斗罗大陆手游',
+    description: '斗罗 IP 卡牌手游，累计流水过亿。服务端基于 Netty 通信，游戏服与中心服通过 Thrift RPC 通信，数据落地 MySQL、缓存基于 Redis。负责养成系统与大中型玩法的开发上线，活动 GM / 公告 / CDKey 等周边服开发优化，并独立完成 VNGGames 越南、泰国地区的发行接入。',
+    tech: ['Core Java', 'Netty', 'Thrift RPC', 'Hibernate', 'MySQL', 'Redis'],
     link: '',
     github: ''
   },
   {
-    title: '项目名称 2',
-    description: '项目的简短描述，说明项目的目标和你的贡献',
-    tech: ['React', 'Node.js', 'MongoDB'],
+    title: '梦幻觉醒手游（SLG）',
+    description: 'ROK-Like 轻中度 SLG 游戏，客户端基于 Unity3D，服务端基于 Spring 框架，前后端接口基于 Google Protobuf，并发采用 Actor 模型（类 Akka）。负责个人养成线与联盟养成线开发（注册登录、道具、武将士兵、城建、联盟等系统）、部分场景模块（大地图建筑、部队创建与行为）及整体架构设计。',
+    tech: ['Spring Boot', 'Spring MVC', 'Netty', 'Protobuf', 'Actor 模型', 'MongoDB'],
     link: '',
     github: ''
   },
   {
-    title: '项目名称 3',
-    description: '项目的简短描述，说明项目的目标和你的贡献',
-    tech: ['Python', 'Django', 'PostgreSQL'],
+    title: 'TF-JAL 航司内容对接',
+    description: '为 Travelfusion（聚合平台）实现与各大航司及 OTA 内容（Booking.com / Trip.com / Expedia 等）的对接，并与东京 JAL、巴黎 Amadeus 等全球团队协作完成集成。',
+    tech: ['Spring', 'Spring MVC', 'MyBatis', 'Redis', 'RESTful'],
     link: '',
     github: ''
   }

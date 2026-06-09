@@ -2,9 +2,9 @@
 import { ref, onMounted } from 'vue'
 
 const contactInfo = {
-  email: 'your.email@example.com',
-  location: '城市, 国家',
-  available: true
+  email: 'chuanhui.liu2020@gmail.com',
+  location: '上海',
+  available: false
 }
 
 const sectionRef = ref(null)

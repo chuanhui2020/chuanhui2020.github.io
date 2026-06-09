@@ -2,14 +2,14 @@
 import { ref, onMounted } from 'vue'
 
 const personalInfo = {
-  name: '你的名字',
-  title: '职位/职业',
-  description: '简短的自我介绍，描述你的专业领域和职业目标。',
+  name: '刘传辉',
+  title: '服务端开发工程师',
+  description: '7 年后端开发经验，专注 Java / Golang 高并发服务端。做过流水过亿的卡牌游戏、SLG 游戏服务端，也有银行金融系统与外企航司内容对接的经历，并独立完成过游戏的海外（越南 / 泰国）发行接入。',
   avatar: '',
   social: {
-    github: 'https://github.com/yourusername',
+    github: 'https://github.com/chuanhui2020',
     linkedin: '',
-    email: 'your.email@example.com'
+    email: 'chuanhui.liu2020@gmail.com'
   }
 }
 

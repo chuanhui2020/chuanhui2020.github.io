@@ -5,7 +5,7 @@ const mobileMenuOpen = ref(false)
 const activeSection = ref('hero')
 const scrollProgress = ref(0)
 
-const sections = ['hero', 'experience', 'projects', 'skills', 'contact']
+const sections = ['hero', 'experience', 'projects', 'skills', 'education', 'contact']
 
 const scrollToSection = (id) => {
   const element = document.getElementById(id)
@@ -64,7 +64,7 @@ onUnmounted(() => {
             class="relative px-4 py-2 rounded-lg transition-all duration-200"
             :class="activeSection === section ? 'text-tech-accent' : 'text-tech-muted-fg hover:text-tech-fg'"
           >
-            {{ { hero: '首页', experience: '经历', projects: '项目', skills: '技能', contact: '联系' }[section] }}
+            {{ { hero: '首页', experience: '经历', projects: '项目', skills: '技能', education: '教育', contact: '联系' }[section] }}
             <span
               v-if="activeSection === section"
               class="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-0.5 bg-tech-accent rounded-full shadow-[0_0_8px_rgba(34,197,94,0.6)]"
@@ -111,7 +111,7 @@ onUnmounted(() => {
             :class="activeSection === section ? 'text-tech-accent bg-tech-muted' : 'text-tech-muted-fg hover:bg-tech-muted hover:text-tech-accent'"
           >
             <span v-if="activeSection === section" class="mr-2">▹</span>
-            {{ { hero: '首页', experience: '经历', projects: '项目', skills: '技能', contact: '联系' }[section] }}
+            {{ { hero: '首页', experience: '经历', projects: '项目', skills: '技能', education: '教育', contact: '联系' }[section] }}
           </button>
         </div>
       </div>

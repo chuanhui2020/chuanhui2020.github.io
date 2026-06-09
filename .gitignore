@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# 简历 PDF（含手机号等隐私信息，不提交到公开仓库）
+*.pdf
+
+# Claude Code 本地个人配置（权限等，不共享）
+.claude/settings.local.json
